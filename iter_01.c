@@ -4,6 +4,7 @@
 #define MAXI 100000
 
 void inicializar(int *, int);
+
 int proceso(int *, int, int);
 void mostrar(int *, int);
 
