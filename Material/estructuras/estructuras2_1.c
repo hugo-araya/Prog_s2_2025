@@ -6,7 +6,7 @@ struct ejemplo{
 
 int main(){
     struct ejemplo e1, a[10];
-    int i = 0;
+    int i;
     for(i = 0; i < 10; i++){
         a[i].c = i+65;
         a[i].i = i+65;

@@ -1,5 +1,15 @@
 #include <stdio.h>
 #include "fenster.h"
+/*
+Para compilar debe hacerlo de la siguiente manera:
+
+En Linux
+cc nombre_pgm.c -lX11 -lasound -o nombre_pgm && ./nombre_pgm
+# macOS
+cc nombre_pgm.c -framework Cocoa -framework AudioToolbox -o nombre_pgm && ./nombre_pgm
+# windows
+cc nombre_pgm.c -lgdi32 -lwinmm -o nombre_pgm.exe && nombre_pgm.exe
+*/
 
 int main(){
     FILE *ent, *sal;
@@ -7,8 +17,9 @@ int main(){
     char comen[100];
     int ancho, alto, grises, pixel, i, j, cont = 0;
     unsigned int pixeles[800][800];
+
     ent = fopen("Cartagena.pgm", "r");
-    sal = fopen("Cartagena_binaria_1.pgm", "w"); 
+    sal = fopen("Cartagena_negativo.pgm", "w"); 
     fgets(magica, 5, ent);
     fprintf(sal, "%s", magica);
     fgets(comen, 100, ent);
@@ -18,25 +29,15 @@ int main(){
     fscanf(ent, "%d", &alto);
     fscanf(ent, "%d", &grises);   
     fprintf(sal, "%d %d\n%d\n", ancho, alto, grises); 
-    printf("%d %d\n%d\n", ancho, alto, grises); 
-    i = 0;
-    while (i < alto){
-        j = 0;
-        while (j < ancho){
+    for (i = 0; i < alto; i++){
+        for (j = 0; j < ancho; j++){
             fscanf(ent, "%d", &pixel);
-            if (pixel < 180){
-                pixel = 0;
-            }
-            else{
-                pixel = 255;
-            }
+            pixel = 255 - pixel;
             fprintf(sal, "%d\n", pixel);
             pixeles[i][j] = pixel;
-            j++;
         }
-        i++;
     }
-
+/*
     uint32_t buf[ancho * alto];
     struct fenster f = { .title = "Mas clara", .width = ancho, .height = alto, .buf = buf };
     fenster_open(&f);
@@ -52,9 +53,8 @@ int main(){
             i++;
         }  
     }
-
     fenster_close(&f);
-
+*/
     fclose(ent);
     fclose(sal);
     return 0;
