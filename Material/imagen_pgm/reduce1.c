@@ -42,17 +42,20 @@ int main(){
         }
     }
     i1 = 0;
-    j1 = 0;
-    for (i = 0 ; i < alto; i=i+2){
-        for(j = 0; j < ancho; j=j+2){
-                salida[i1][j1] = pixeles[i][j];
-                j1++;
+    for (i = 0 ; i < alto; i++){
+        if (i%2 != 0){
+            j1 = 0;
+            for(j = 0; j < ancho; j++)
+                if (j%2 != 0){
+                    salida[i1][j1] = pixeles[i][j];
+                    j1++;
+                }
+            i1++;
         }
-        i1++;
     }
-
-    for (i = 0; i < 320; i++){
-        for (j = 0; j < 240; j++){
+           
+    for (i = 0; i < 240; i++){
+        for (j = 0; j < 320; j++){
             fprintf(sal, "%d\n", salida[i][j]);
         }
     }
