@@ -42,7 +42,7 @@ int main(){
             pixeles[i][j] = pixel;
         }
     }
-/*
+
     uint32_t buf[ancho * alto];
     struct fenster f = { .title = "Mas clara", .width = ancho, .height = alto, .buf = buf };
     fenster_open(&f);
@@ -52,14 +52,15 @@ int main(){
             j = 0;
             while (j < ancho){
                 //fenster_pixel(&f, j, i) = pixeles[i][j];
-                fenster_pixel(&f, j, i) = pixeles[i][j];
+                fenster_pixel(&f, j, i) = 8355711;
+                //fenster_pixel(&f, j, i) = pixeles[i][j];
                 j++;
             }
             i++;
         }  
     }
     fenster_close(&f);
-*/
+
     fclose(ent);
     fclose(sal);
     return 0;
